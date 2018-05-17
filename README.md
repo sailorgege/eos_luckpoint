@@ -1,0 +1,2 @@
+# eos_luckpoint
+一个包含前后端的完整DAPP结构的EOS游戏
