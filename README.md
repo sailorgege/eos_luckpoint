@@ -62,6 +62,47 @@ EOS DAPP实战开发教程源码，包含前端的用户界面，和后端的智
 8、开始游戏。
 
 
+命令行执行合约接口及查询表数据：
+-----------------------------------
+
+// 创建一个新游戏
+>
+> cleos push action luckpoint.co creategame '["banker"]' -p banker
+>
+>
+
+// 玩家开牌命令（第一个参数为游戏id，需要与实际的游戏id对应）
+>
+> cleos push action luckpoint.co opencard '[1,1]' -p player1
+>
+> cleos push action luckpoint.co opencard '[1,2]' -p player2
+>
+>
+
+// 查询表数据
+>
+> cleos get table luckpoint.co luckpoint.co game
+>
+>
+
+参考资料：
+-----------------------------------
+
+// eos安装文档
+>
+> https://github.com/EOSIO/eos/wiki/Local-Environment#getting-the-code
+>
+
+// eosjs官方教程
+>
+> https://github.com/EOSIO/eosjs
+>
+
+// eosjs api文档
+>
+> https://github.com/EOSIO/eosjs-api/blob/master/src/api/v1/chain.json
+>
+
 演示视频：
 -----------------------------------
 > http://v.youku.com/v_show/id_XMzYxMDU5OTk2NA==.html

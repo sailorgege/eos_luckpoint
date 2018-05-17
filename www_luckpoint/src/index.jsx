@@ -1,16 +1,16 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import EOS from 'eosjs'
+import EOSJS from 'eosjs'
 
 let contract_name = 'luckpoint.co'
 let account_name = 'banker'
 
-const EOS_CONFIG = {
+const EOSJS_CONFIG = {
   contractName: contract_name,    // 合约名字
   contractSender: account_name,   // 执行合约的账户 (需要与私钥对应)
   clientConfig: {
     keyProvider: ['5JcziTgwUhQgKyvmvc4ygEPGonQPVrBYNTwezAg5UuJ7djyVDWQ'], // 账号对应的私钥
-    httpEndpoint: 'http://127.0.0.1:8888' // EOS的http终端
+    httpEndpoint: 'http://127.0.0.1:8888' // EOS节点程序的http终端
   }
 }
 
@@ -52,12 +52,12 @@ class LuckPoint extends React.Component {
     this.gameprops.gameDataList = []
 
     // 读取游戏数据
-    let eos = EOS.Localnet(EOS_CONFIG.clientConfig)
-    eos.contract(contract_name)
+    let eosjs = EOSJS.Localnet(EOSJS_CONFIG.clientConfig)
+    eosjs.contract(contract_name)
       .then((contract) => {
         console.log('_updateGameData::' + contract_name + '合约加载成功！')
 
-        eos.getTableRows({"scope":contract_name, "code":contract_name, "table":"game", "json": true})
+        eosjs.getTableRows({"scope":contract_name, "code":contract_name, "table":"game", "json": true})
           .then(result => {
             console.log('_updateGameData::读取游戏列表成功！')
 
@@ -110,8 +110,8 @@ class LuckPoint extends React.Component {
     this._showLoading(true, '正在创建游戏... ...')
 
     let _sender = account_name
-    let eosjs = EOS.Localnet(EOS_CONFIG.clientConfig)
-    eosjs.contract(EOS_CONFIG.contractName)
+    let eosjs = EOSJS.Localnet(EOSJS_CONFIG.clientConfig)
+    eosjs.contract(EOSJS_CONFIG.contractName)
       .then((contract) => {
         console.log('_createGame::加载合约成功！')
 
@@ -133,8 +133,8 @@ class LuckPoint extends React.Component {
     this._showLoading(true, '玩家' + play_id + '正在开牌 ...')
 
     let _sender = account_name
-    let eosjs = EOS.Localnet(EOS_CONFIG.clientConfig)
-    eosjs.contract(EOS_CONFIG.contractName)
+    let eosjs = EOSJS.Localnet(EOSJS_CONFIG.clientConfig)
+    eosjs.contract(EOSJS_CONFIG.contractName)
       .then((contract) => {
         console.log('_playerOpenCard::加载合约成功！')
 
